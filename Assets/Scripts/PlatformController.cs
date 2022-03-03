@@ -27,6 +27,17 @@ public class PlatformController : MonoBehaviour
         AddBall();
     }
 
+    private void Start()
+    {
+        GameState.instace.OnLifeChanged += life =>
+        {
+            if (life > 0)
+            {
+                AddBall();
+            }
+        };
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -40,8 +51,11 @@ public class PlatformController : MonoBehaviour
 
     public void FreeBall()
     {
-        if(ballOnThePlatform!=null)
+        if (ballOnThePlatform != null)
+        {
             ballOnThePlatform.GetComponent<Ball>().Throw();
+            ballOnThePlatform = null;
+        }
     }
 
     public void Move(float direction)
@@ -70,6 +84,7 @@ public class PlatformController : MonoBehaviour
         {
             ballOnThePlatform = Instantiate(ball, transform);
             ballOnThePlatform.transform.position = spawnBallPosition.position;
+            GameState.instace.AddBall();
         }
     }
     #endregion

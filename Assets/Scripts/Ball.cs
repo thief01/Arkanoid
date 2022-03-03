@@ -12,16 +12,17 @@ public class Ball : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
-    // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
-        
+        GameState.instace.CloneBalls += Clone;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.name == "deathZone")
         {
+            GameState.instace.RemoveBall();
             Destroy(gameObject);
         }
 
@@ -47,5 +48,6 @@ public class Ball : MonoBehaviour
     {
         GameObject g = Instantiate(gameObject);
         g.GetComponent<Rigidbody2D>().velocity = -rigidbody2D.velocity;
+        GameState.instace.AddBall();
     }
 }
