@@ -12,7 +12,7 @@ public class GameState : MonoBehaviour
     public event Action<int> OnScoreChanged = delegate { };
     public event Action<int> OnLifeChanged = delegate { };
 
-    private int score=0;
+    private int score = 0;
     private int lifes = 3;
     private int countOfBalls = 0;
 
@@ -30,7 +30,7 @@ public class GameState : MonoBehaviour
 
     public void CloneBalls()
     {
-        if(countOfBalls < MAX_BALLS_TO_CLONE)
+        if (countOfBalls < MAX_BALLS_TO_CLONE)
             OnCloneBalls?.Invoke();
     }
 
@@ -39,6 +39,7 @@ public class GameState : MonoBehaviour
         score += points;
         OnScoreChanged(score);
     }
+
     public void AddBall()
     {
         countOfBalls++;
@@ -47,7 +48,7 @@ public class GameState : MonoBehaviour
     public void RemoveBall()
     {
         countOfBalls--;
-        if(countOfBalls<=0)
+        if (countOfBalls <= 0)
         {
             lifes--;
             OnLifeChanged(lifes);

@@ -18,7 +18,7 @@ public class Brick : MonoBehaviour
     {
         health--;
         GameState.instace.AddPoints(POINTS_FOR_HIT);
-        if(health<=0)
+        if (health <= 0)
         {
             Kill();
         }

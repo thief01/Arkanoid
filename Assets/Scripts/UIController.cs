@@ -14,14 +14,13 @@ public class UIController : MonoBehaviour
     private TextMeshProUGUI scoreInGameoverScreen;
     [SerializeField]
     private GameObject gameoverScreen;
-    
-    // Start is called before the first frame update
+
     void Start()
     {
         GameState.instace.OnLifeChanged += lifes =>
         {
             this.lifes.text = "Lifes: " + lifes.ToString();
-            if(lifes<=0)
+            if (lifes <= 0)
             {
                 gameoverScreen.gameObject.SetActive(true);
                 scoreInGameoverScreen.text = score.text;

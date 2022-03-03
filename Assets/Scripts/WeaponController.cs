@@ -19,7 +19,7 @@ public class WeaponController : MonoBehaviour
     {
         GameState.instace.OnLifeChanged += lifes =>
         {
-            if(lifes<=0)
+            if (lifes <= 0)
             {
                 currentShots = 0;
                 SetActiveWeapon(false);
@@ -29,24 +29,25 @@ public class WeaponController : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        foreach(Transform t in weapons)
+        foreach (Transform t in weapons)
         {
-            Gizmos.DrawWireSphere(t.position+Vector3.up*spawnOffset, 0.05f);
+            Gizmos.DrawWireSphere(t.position + Vector3.up * spawnOffset, 0.05f);
         }
     }
+
     public void Shoot()
     {
-        if(currentShots>0)
+        if (currentShots > 0)
         {
             currentShots--;
-            foreach(Transform t in weapons)
+            foreach (Transform t in weapons)
             {
                 GameObject g = Instantiate(bullet);
                 g.transform.position = t.position + Vector3.up * spawnOffset;
             }
         }
 
-        if(currentShots<=0)
+        if (currentShots <= 0)
         {
             SetActiveWeapon(false);
         }
@@ -60,10 +61,9 @@ public class WeaponController : MonoBehaviour
 
     private void SetActiveWeapon(bool active)
     {
-        foreach(Transform t in weapons)
+        foreach (Transform t in weapons)
         {
             t.gameObject.SetActive(active);
         }
     }
-    
 }

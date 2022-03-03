@@ -5,11 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
-    private float speed=15;
+    private float speed = 15;
 
     private void Awake()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1).normalized *speed;
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1).normalized * speed;
         Destroy(gameObject, 10);
     }
 

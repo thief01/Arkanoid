@@ -20,13 +20,13 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.name == "deathZone")
+        if (collision.gameObject.name == "deathZone")
         {
             GameState.instace.RemoveBall();
             Destroy(gameObject);
         }
 
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             PlatformController pc = collision.gameObject.GetComponent<PlatformController>();
             if (pc != null)
@@ -36,7 +36,7 @@ public class Ball : MonoBehaviour
             }
         }
 
-        if(rigidbody2D.velocity.magnitude < speed)
+        if (rigidbody2D.velocity.magnitude < speed)
         {
             rigidbody2D.velocity = rigidbody2D.velocity.normalized * speed;
         }
@@ -44,7 +44,7 @@ public class Ball : MonoBehaviour
 
     public void Throw()
     {
-        rigidbody2D.velocity = new Vector2(Random.Range(-1, 1), 1).normalized*speed;
+        rigidbody2D.velocity = new Vector2(Random.Range(-1, 1), 1).normalized * speed;
         rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         transform.parent = null;
     }

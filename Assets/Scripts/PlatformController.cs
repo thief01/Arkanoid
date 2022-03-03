@@ -38,12 +38,6 @@ public class PlatformController : MonoBehaviour
         };
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public int GetSize()
     {
         return currentSize;
@@ -60,7 +54,7 @@ public class PlatformController : MonoBehaviour
 
     public void Move(float direction)
     {
-        rigidbody2D.velocity = new Vector2(direction* speed, 0);
+        rigidbody2D.velocity = new Vector2(direction * speed, 0);
     }
 
     #region Pickups
@@ -80,7 +74,7 @@ public class PlatformController : MonoBehaviour
 
     public void AddBall()
     {
-        if(ballOnThePlatform == null)
+        if (ballOnThePlatform == null)
         {
             ballOnThePlatform = Instantiate(ball, transform);
             ballOnThePlatform.transform.position = spawnBallPosition.position;
@@ -91,9 +85,9 @@ public class PlatformController : MonoBehaviour
 
     private void SizeChanged()
     {
-        for(int i=0; i<3; i++)
+        for (int i = 0; i < 3; i++)
         {
-            if(i==currentSize-1)
+            if (i == currentSize - 1)
             {
                 platformSizes[i].gameObject.SetActive(true);
             }
