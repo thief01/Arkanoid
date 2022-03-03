@@ -28,7 +28,7 @@ public class Brick : MonoBehaviour
     {
         if (pickupDrop.Length > 0)
         {
-            float random = Random.RandomRange(0, 100);
+            float random = Random.Range(0, 100);
             if (random < CHANCE_TO_DROP)
             {
                 int id = Random.Range(0, pickupDrop.Length);
