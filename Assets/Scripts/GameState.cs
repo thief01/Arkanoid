@@ -5,6 +5,7 @@ using System;
 
 public class GameState : MonoBehaviour
 {
+    private const int MAX_BALLS_TO_CLONE = 20;
     public static GameState instace;
 
     public event Action OnCloneBalls = delegate { };
@@ -29,7 +30,8 @@ public class GameState : MonoBehaviour
 
     public void CloneBalls()
     {
-        OnCloneBalls?.Invoke();
+        if(countOfBalls < MAX_BALLS_TO_CLONE)
+            OnCloneBalls?.Invoke();
     }
 
     public void AddPoints(int points)
