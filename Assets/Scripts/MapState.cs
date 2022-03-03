@@ -59,7 +59,7 @@ public class MapState : MonoBehaviour
             {
                 Vector3 offset = new Vector3(j * X_BRICK_SIZE, i * Y_BRICK_SIZE, 0);
                 Vector3 position = offset + transform.position;
-                float brickDurability = Mathf.PerlinNoise(position.y, position.x) * (bricksPrefabs.Length + 3);
+                float brickDurability = Mathf.PerlinNoise(position.y, position.x) * (bricksPrefabs.Length + 2);
                 int blockId = Mathf.RoundToInt(brickDurability);
                 if (blockId < bricksPrefabs.Length)
                 {
