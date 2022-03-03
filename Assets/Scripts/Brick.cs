@@ -37,7 +37,7 @@ public class Brick : MonoBehaviour
             }
         }
         GameState.instace.AddPoints(POINTS_FOR_DESTROY);
-        MapState.instance.BrickDestroyed();
+        MapState.instance.BrickDestroyed(gameObject);
         Destroy(gameObject);
     }
 }

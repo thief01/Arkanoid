@@ -19,7 +19,7 @@ public class MapState : MonoBehaviour
     [SerializeField]
     private GameObject[] bricksPrefabs;
 
-    private int spawnedBricks=0;
+    private List<GameObject> spawnedBricks = new List<GameObject>();
     private void Awake()
     {
         if (instance == null)
@@ -41,17 +41,18 @@ public class MapState : MonoBehaviour
         
     }
 
-    public void BrickDestroyed()
+    public void BrickDestroyed(GameObject g)
     {
-        spawnedBricks--;
-        if(spawnedBricks<=0)
+        spawnedBricks.Remove(g);
+
+        if(spawnedBricks.Count <= 0)
         {
             SpawnMap();
         }
     }
 
     private void SpawnMap()
-    {
+    { 
         int[] currentBricks = new int[5];
         for(int i=0; i<ySize; i++)
         {
@@ -59,7 +60,7 @@ public class MapState : MonoBehaviour
             {
                 Vector3 offset = new Vector3(j * X_BRICK_SIZE, i * Y_BRICK_SIZE, 0);
                 Vector3 position = offset + transform.position;
-                float brickDurability = Mathf.PerlinNoise(position.y , position.x) * (bricksPrefabs.Length+1);
+                float brickDurability = Mathf.PerlinNoise(position.y , position.x) * (bricksPrefabs.Length+3);
                 int blockId = Mathf.RoundToInt(brickDurability);
                 if(blockId < bricksPrefabs.Length)
                 {
@@ -69,7 +70,7 @@ public class MapState : MonoBehaviour
                     }
                     GameObject brick = Instantiate(bricksPrefabs[blockId], transform);
                     brick.transform.position = position;
-                    spawnedBricks++;
+                    spawnedBricks.Add(brick);
                     currentBricks[blockId]++;
                 }
             }
