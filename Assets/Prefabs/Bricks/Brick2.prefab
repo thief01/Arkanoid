@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
+  brickExplode: {fileID: 1726011583168236770, guid: 7130ede6f4a3bcc4fbe88bc69a882184, type: 3}
   pickupDrop:
   - {fileID: 6499887729242481050, guid: 905de116b6563464fb10bb606636e1e9, type: 3}
   - {fileID: 218502853038631254, guid: 95f3d90dfb9da17408f26a751ce6ad55, type: 3}

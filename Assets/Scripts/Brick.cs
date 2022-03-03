@@ -10,7 +10,8 @@ public class Brick : MonoBehaviour
 
     [SerializeField]
     private int health;
-
+    [SerializeField]
+    private GameObject brickExplode;
     [SerializeField]
     private GameObject[] pickupDrop;
 
@@ -36,8 +37,16 @@ public class Brick : MonoBehaviour
                 go.transform.position = transform.position;
             }
         }
+        SpawnFX();
         GameState.instace.AddPoints(POINTS_FOR_DESTROY);
         MapState.instance.BrickDestroyed(gameObject);
         Destroy(gameObject);
+    }
+
+    private void SpawnFX()
+    {
+        GameObject g = Instantiate(brickExplode);
+        g.transform.position = transform.position;
+        Destroy(g, 1);
     }
 }
