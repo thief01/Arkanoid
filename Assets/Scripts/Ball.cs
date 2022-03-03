@@ -35,6 +35,11 @@ public class Ball : MonoBehaviour
                 rigidbody2D.velocity = new Vector2(x, 1).normalized * speed;
             }
         }
+
+        if(rigidbody2D.velocity.magnitude < speed)
+        {
+            rigidbody2D.velocity = rigidbody2D.velocity.normalized * speed;
+        }
     }
 
     public void Throw()
