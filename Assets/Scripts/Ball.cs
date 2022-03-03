@@ -46,8 +46,11 @@ public class Ball : MonoBehaviour
 
     public void Clone()
     {
-        GameObject g = Instantiate(gameObject);
-        g.GetComponent<Rigidbody2D>().velocity = -rigidbody2D.velocity;
-        GameState.instace.AddBall();
+        if (rigidbody2D.bodyType != RigidbodyType2D.Kinematic)
+        {
+            GameObject g = Instantiate(gameObject);
+            g.GetComponent<Rigidbody2D>().velocity = -rigidbody2D.velocity;
+            GameState.instace.AddBall();
+        }
     }
 }
