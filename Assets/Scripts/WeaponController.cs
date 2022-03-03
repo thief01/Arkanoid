@@ -5,9 +5,9 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     private const int SHOTS = 10;
+
     [SerializeField]
     private Transform[] weapons;
-
     [SerializeField]
     private GameObject bullet;
     [SerializeField]
