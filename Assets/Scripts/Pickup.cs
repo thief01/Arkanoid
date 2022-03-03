@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+    private const float SPEED = -5;
     private enum PickupType
     {
         sizeUp,
@@ -18,7 +19,7 @@ public class Pickup : MonoBehaviour
 
     private void Awake()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, -10);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, SPEED);
         Destroy(gameObject, 10);
     }
 

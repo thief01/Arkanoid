@@ -1044,7 +1044,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 2141028531}
   - {fileID: 1911431410}
-  bullet: {fileID: 0}
+  bullet: {fileID: 5525254212972008058, guid: 4ea0da865e200ed49b64c060d7089bf7, type: 3}
   spawnOffset: 0.1
 --- !u!1 &1833664543
 GameObject:
@@ -1171,7 +1171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1911431410
 Transform:
   m_ObjectHideFlags: 0
@@ -1253,7 +1253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2141028531
 Transform:
   m_ObjectHideFlags: 0
