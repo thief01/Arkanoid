@@ -6,7 +6,7 @@ public class Brick : MonoBehaviour
 {
     private const int POINTS_FOR_HIT = 10;
     private const int POINTS_FOR_DESTROY = 100;
-    private const float CHANCE_TO_DROP = 50;
+    private const float CHANCE_TO_DROP = 30;
 
     [SerializeField]
     private int health;
@@ -37,6 +37,7 @@ public class Brick : MonoBehaviour
             }
         }
         GameState.instace.AddPoints(POINTS_FOR_DESTROY);
+        MapState.instance.BrickDestroyed();
         Destroy(gameObject);
     }
 }
