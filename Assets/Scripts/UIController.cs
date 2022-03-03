@@ -5,6 +5,7 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
+    private const string LIFES = "Lifes: ";
     [SerializeField]
     private TextMeshProUGUI lifes;
     [SerializeField]
@@ -19,7 +20,7 @@ public class UIController : MonoBehaviour
     {
         GameState.instace.OnLifeChanged += lifes =>
         {
-            this.lifes.text = "Lifes: " + lifes.ToString();
+            this.lifes.text = LIFES + lifes.ToString();
             if (lifes <= 0)
             {
                 gameoverScreen.gameObject.SetActive(true);
