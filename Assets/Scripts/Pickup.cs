@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    private const float SPEED = -5;
+    private const float SPEED = -2.5;
     private enum PickupType
     {
         sizeUp,
