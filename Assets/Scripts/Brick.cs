@@ -33,6 +33,7 @@ public class Brick : MonoBehaviour
             {
                 int id = Random.Range(0, pickupDrop.Length);
                 GameObject go = Instantiate(pickupDrop[id]);
+                go.transform.position = transform.position;
             }
         }
         GameState.instace.AddPoints(POINTS_FOR_DESTROY);
