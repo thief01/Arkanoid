@@ -49,10 +49,6 @@ public class GameState : MonoBehaviour
         {
             lifes--;
             OnLifeChanged(lifes);
-            if(lifes<=0)
-            {
-                // lose
-            }
         }
     }
 }
