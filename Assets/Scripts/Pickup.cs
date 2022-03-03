@@ -16,6 +16,12 @@ public class Pickup : MonoBehaviour
     [SerializeField]
     private PickupType type;
 
+    private void Awake()
+    {
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, -10);
+        Destroy(gameObject, 10);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         switch (type)
@@ -38,5 +44,6 @@ public class Pickup : MonoBehaviour
             default:
                 break;
         }
+        Destroy(gameObject);
     }
 }

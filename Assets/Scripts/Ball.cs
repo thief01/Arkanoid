@@ -15,7 +15,7 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
-        GameState.instace.CloneBalls += Clone;
+        GameState.instace.OnCloneBalls += Clone;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
