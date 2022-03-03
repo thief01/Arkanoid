@@ -7,7 +7,7 @@ public class GameState : MonoBehaviour
 {
     public static GameState instace;
 
-    public event Action CloneBalls = delegate { };
+    public event Action OnCloneBalls = delegate { };
     public event Action<int> OnScoreChanged = delegate { };
     public event Action<int> OnLifeChanged = delegate { };
 
@@ -26,6 +26,12 @@ public class GameState : MonoBehaviour
         OnScoreChanged?.Invoke(score);
         OnLifeChanged?.Invoke(lifes);
     }
+
+    public void CloneBalls()
+    {
+        OnCloneBalls?.Invoke();
+    }
+
     public void AddPoints(int points)
     {
         score += points;
