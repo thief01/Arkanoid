@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6499887729242481051}
   - component: {fileID: 6499887729242481055}
   m_Layer: 10
-  m_Name: addBall
+  m_Name: Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: -7631662534167681996, guid: 015756408921cee45a7a7a170d554e6d, type: 3}
+  m_Sprite: {fileID: -8595998037332777578, guid: 015756408921cee45a7a7a170d554e6d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +102,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.27, y: 0.27}
+    oldSize: {x: 0.71, y: 0.63}
     newSize: {x: 0.27, y: 0.27}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -144,4 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8445d879dd5f6142823ac2ff5e088dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
+  spritesByType:
+  - {fileID: -8537011234508524241, guid: 015756408921cee45a7a7a170d554e6d, type: 3}
+  - {fileID: -8595998037332777578, guid: 015756408921cee45a7a7a170d554e6d, type: 3}
+  - {fileID: -2401518261572203805, guid: 015756408921cee45a7a7a170d554e6d, type: 3}
+  - {fileID: -4038775101273767872, guid: 015756408921cee45a7a7a170d554e6d, type: 3}
+  - {fileID: -7631662534167681996, guid: 015756408921cee45a7a7a170d554e6d, type: 3}

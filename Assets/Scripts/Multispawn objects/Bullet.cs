@@ -7,15 +7,16 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float speed = 15;
 
+    private Rigidbody2D rigidbody2D;
+
     private void Awake()
     {
-        
-        PrefabCollector<Bullet>.Instance.Destroy(this, 10);
+        rigidbody2D= GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1).normalized * speed;
+        rigidbody2D.velocity = new Vector2(0, 1).normalized * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

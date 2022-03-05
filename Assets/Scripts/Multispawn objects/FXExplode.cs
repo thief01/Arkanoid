@@ -16,6 +16,5 @@ public class FXExplode : MonoBehaviour
         if (animator == null)
             animator = GetComponent<Animator>();
         animator.SetTrigger("Play");
-        PrefabCollector<FXExplode>.Instance.Destroy(this, 1);
     }
 }

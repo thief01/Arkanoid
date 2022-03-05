@@ -41,6 +41,7 @@ public class WeaponController : MonoBehaviour
             foreach (Transform t in weapons)
             {
                 Bullet g = PrefabCollector<Bullet>.Instance.GetFreePrefab();
+                PrefabCollector<Bullet>.Instance.Destroy(g, 10);
                 g.transform.position = t.position + Vector3.up * spawnOffset;
             }
         }

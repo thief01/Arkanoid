@@ -145,12 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickExplode: {fileID: 1306425265585280460, guid: 7130ede6f4a3bcc4fbe88bc69a882184, type: 3}
-  pickupDrop:
-  - {fileID: 6499887729242481050, guid: 905de116b6563464fb10bb606636e1e9, type: 3}
-  - {fileID: 218502853038631254, guid: 95f3d90dfb9da17408f26a751ce6ad55, type: 3}
-  - {fileID: 2301657328910035486, guid: 5fffa5554d456124f91eaabdac2c0f7b, type: 3}
-  - {fileID: 8749980591038565314, guid: 3cd55d18a389fbc47a2a3a4c12739b26, type: 3}
-  - {fileID: 8943153607402076191, guid: 65c5768367e08d54bb2056955546569b, type: 3}
+  pickupDrop: {fileID: 6499887729242481055, guid: 905de116b6563464fb10bb606636e1e9, type: 3}
   spritesByHealth:
   - {fileID: -460843163984081925, guid: 015756408921cee45a7a7a170d554e6d, type: 3}
   - {fileID: -869592277184920961, guid: 015756408921cee45a7a7a170d554e6d, type: 3}

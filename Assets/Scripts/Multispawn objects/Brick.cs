@@ -6,6 +6,7 @@ public class Brick : MonoBehaviour
 {
     public const int MAX_HEALTH = 5;
 
+    private const int MAX_PICKUPS = 5;
     private const int POINTS_FOR_HIT = 10;
     private const int POINTS_FOR_DESTROY = 100;
     private const float CHANCE_TO_DROP = 30;
@@ -28,7 +29,7 @@ public class Brick : MonoBehaviour
     [SerializeField]
     private FXExplode brickExplode;
     [SerializeField]
-    private GameObject[] pickupDrop;
+    private Pickup pickupDrop;
 
     [SerializeField]
     private Sprite[] spritesByHealth;
@@ -38,6 +39,7 @@ public class Brick : MonoBehaviour
     private void Awake()
     {
         PrefabCollector<FXExplode>.Instance.SetSketch(brickExplode);
+        PrefabCollector<Pickup>.Instance.SetSketch(pickupDrop);
         spriteRenderer = GetComponent<SpriteRenderer>();
         OnHealthChanged();
     }
@@ -54,16 +56,15 @@ public class Brick : MonoBehaviour
 
     private void Kill()
     {
-        if (pickupDrop.Length > 0)
+        float random = Random.Range(0, 100);
+        if (random < CHANCE_TO_DROP)
         {
-            float random = Random.Range(0, 100);
-            if (random < CHANCE_TO_DROP)
-            {
-                int id = Random.Range(0, pickupDrop.Length);
-                GameObject go = Instantiate(pickupDrop[id]);
-                go.transform.position = transform.position;
-            }
+            int id = Random.Range(0, MAX_PICKUPS - 1);
+            Pickup p = PrefabCollector<Pickup>.Instance.GetFreePrefab();
+            p.transform.position = transform.position;
+            p.SetPickupType((Pickup.PickupType)id);
         }
+
         SpawnFX();
         GameState.instace.AddPoints(POINTS_FOR_DESTROY);
         MapState.instance.BrickDestroyed(this);
@@ -73,6 +74,7 @@ public class Brick : MonoBehaviour
     private void SpawnFX()
     {
         FXExplode g = PrefabCollector<FXExplode>.Instance.GetFreePrefab();
+        PrefabCollector<FXExplode>.Instance.Destroy(g, 1);
         g.transform.position = transform.position;
         g.Play();
     }

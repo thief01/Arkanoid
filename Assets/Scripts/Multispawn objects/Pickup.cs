@@ -5,7 +5,16 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     private const float SPEED = -2.5f;
-    private enum PickupType
+    private readonly Powerup[] POWERUPS = 
+    { 
+        new PowerupSizeUp(),
+        new PowerupSizeDown(),
+        new PowerupAddWeapon(),
+        new PowerupCloneBall(),
+        new PowerupAddBall()
+    };
+
+    public enum PickupType
     {
         sizeUp,
         sizeDown,
@@ -14,37 +23,41 @@ public class Pickup : MonoBehaviour
         addBall
     }
 
+    private int pickupId = 0;
     [SerializeField]
-    private PickupType type;
+    private Sprite[] spritesByType;
 
+    private SpriteRenderer spriteRenderer;
+
+    private Rigidbody2D rigidbody2D;
     private void Awake()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, SPEED);
-        Destroy(gameObject, 10);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rigidbody2D= GetComponent<Rigidbody2D>();
+    }
+
+    private void OnEnable()
+    {
+        rigidbody2D.velocity = new Vector2(0, SPEED);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        switch (type)
-        {
-            case PickupType.sizeUp:
-                collision.gameObject.GetComponent<PlatformController>().SizeUp();
-                break;
-            case PickupType.sizeDown:
-                collision.gameObject.GetComponent<PlatformController>().SizeDown();
-                break;
-            case PickupType.bullets:
-                collision.gameObject.GetComponent<WeaponController>().AddWeapon();
-                break;
-            case PickupType.cloneBall:
-                GameState.instace.CloneBalls();
-                break;
-            case PickupType.addBall:
-                collision.gameObject.GetComponent<PlatformController>().AddBall();
-                break;
-            default:
-                break;
-        }
-        Destroy(gameObject);
+        if(pickupId < POWERUPS.Length)
+            POWERUPS[pickupId].Execute(collision);
+
+        PrefabCollector<Pickup>.Instance.Destroy(this);
+    }
+
+    public void SetPickupType(PickupType pickupType)
+    {
+        pickupId = (int)pickupType;
+        OnTypeChanged();
+    }
+
+    private void OnTypeChanged()
+    {
+        if(pickupId < spritesByType.Length)
+            spriteRenderer.sprite = spritesByType[pickupId];
     }
 }
