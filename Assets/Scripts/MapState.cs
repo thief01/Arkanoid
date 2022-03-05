@@ -27,6 +27,7 @@ public class MapState : MonoBehaviour
         else
             Destroy(this);
         PrefabCollector<Brick>.Instance.SetSketch(brickPrefab);
+        GameState.instace.OnStartGame += SpawnMap;
         SpawnMap();
     }
 

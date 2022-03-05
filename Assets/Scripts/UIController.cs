@@ -21,11 +21,17 @@ public class UIController : MonoBehaviour
         GameState.instace.OnLifeChanged += lifes =>
         {
             this.lifes.text = LIFES + lifes.ToString();
-            if (lifes <= 0)
-            {
-                gameoverScreen.gameObject.SetActive(true);
-                scoreInGameoverScreen.text = score.text;
-            }
+        };
+
+        GameState.instace.OnEndGame += () =>
+        {
+            gameoverScreen.gameObject.SetActive(true);
+            scoreInGameoverScreen.text = score.text;
+        };
+
+        GameState.instace.OnStartGame += () =>
+        {
+            gameoverScreen.gameObject.SetActive(false);
         };
 
         GameState.instace.OnScoreChanged += score =>

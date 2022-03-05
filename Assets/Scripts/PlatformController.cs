@@ -35,6 +35,12 @@ public class PlatformController : MonoBehaviour
             if(lifes>0)
                 AddBall();
         };
+
+        GameState.instace.OnStartGame += () =>
+        {
+            ballOnThePlatform = null;
+            AddBall();
+        };
     }
 
     public int GetSize()

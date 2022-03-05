@@ -10,7 +10,10 @@ public class PrefabCollector<T> where T : MonoBehaviour
         get
         {
             if (instance == null)
+            {
                 instance = new PrefabCollector<T>();
+                GameState.instace.OnEndGame += instance.OnGameEnd;
+            }
             return instance;
         }
     }
@@ -106,5 +109,14 @@ public class PrefabCollector<T> where T : MonoBehaviour
         T g = GameObject.Instantiate(sketch.gameObject).GetComponent<T>();
         prefabs.Add(new Prefab() { isUsing = true, prefab = g });
         return g;
+    }
+
+    private void OnGameEnd()
+    {
+        foreach(Prefab p in prefabs)
+        {
+            p.isUsing = false;
+            p.prefab.gameObject.SetActive(false);
+        }
     }
 }

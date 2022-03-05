@@ -7,6 +7,8 @@ public class Ball : MonoBehaviour
     private const float PLATFORM_SIZE_SCALE = 0.35f;
     [SerializeField]
     private float speed = 10;
+    [SerializeField]
+    private LayerMask layer;
     private Rigidbody2D rigidbody2D;
 
     private void Awake()
@@ -17,11 +19,14 @@ public class Ball : MonoBehaviour
     private void Start()
     {
         GameState.instace.OnCloneBalls += Clone;
+        GameState.instace.OnEndGame += () =>
+        {
+            rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+        };
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         if (collision.gameObject.name == "deathZone")
         {
             GameState.instace.RemoveBall();
@@ -38,12 +43,6 @@ public class Ball : MonoBehaviour
                 rigidbody2D.velocity = new Vector2(x, 1).normalized * speed;
             }
         }
-
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Brick"))
-        {
-            
-        }
-
         if (rigidbody2D.velocity.magnitude < speed)
         {
             rigidbody2D.velocity = rigidbody2D.velocity.normalized * speed;
@@ -52,9 +51,10 @@ public class Ball : MonoBehaviour
 
     public void Throw()
     {
-        rigidbody2D.velocity = new Vector2(Random.Range(-1, 1), 1).normalized * speed;
         rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         transform.parent = null;
+        rigidbody2D.velocity = new Vector2(Random.Range(-1,2), 1).normalized * speed;
+        Debug.Log(rigidbody2D.velocity);
     }
 
     public void ThrowInDirection(Vector3 direction)

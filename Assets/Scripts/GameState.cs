@@ -8,6 +8,7 @@ public class GameState : MonoBehaviour
     private const int MAX_BALLS_TO_CLONE = 20;
     public static GameState instace;
 
+    public event Action OnStartGame = delegate { };
     public event Action OnCloneBalls = delegate { };
     public event Action<int> OnScoreChanged = delegate { };
     public event Action<int> OnLifeChanged = delegate { };
@@ -29,6 +30,17 @@ public class GameState : MonoBehaviour
     {
         OnScoreChanged?.Invoke(score);
         OnLifeChanged?.Invoke(lifes);
+    }
+
+    public void RestartGame()
+    {
+        OnEndGame();
+        lifes = 3;
+        score = 0;
+        countOfBalls = 0;
+        OnScoreChanged?.Invoke(score);
+        OnLifeChanged?.Invoke(lifes);
+        OnStartGame();
     }
 
     public void CloneBalls()
