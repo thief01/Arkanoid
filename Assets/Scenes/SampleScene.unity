@@ -596,7 +596,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.71, y: 0.21}
+    oldSize: {x: 0.71, y: 0.24}
     newSize: {x: 0.72, y: 0.21}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -875,7 +875,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.04, y: 0.23}
+    oldSize: {x: 2.04, y: 0.24}
     newSize: {x: 2.04, y: 0.23}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -993,12 +993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSize: 20
   ySize: 20
-  bricksPrefabs:
-  - {fileID: 9059527701383030152, guid: a60f239147efc0f428784c1e4ae45173, type: 3}
-  - {fileID: 3606056136892051521, guid: 7c816f935bff6b34d85a0c12a1d4340e, type: 3}
-  - {fileID: 1114810622327272218, guid: 54278ed1fe95e644b96b448174e9ed8a, type: 3}
-  - {fileID: 1586579008260308142, guid: ca8898dc0bfeb1943abcdd1aacbd003f, type: 3}
-  - {fileID: 1604923900292871365, guid: a84a431f74b6ac04b97a9ac389f9cbd7, type: 3}
+  brickPrefab: {fileID: 9059527701383030152, guid: a60f239147efc0f428784c1e4ae45173, type: 3}
 --- !u!1 &759646080
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,7 +2320,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.38, y: 0.21}
+    oldSize: {x: 1.38, y: 0.24}
     newSize: {x: 1.38, y: 0.22}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

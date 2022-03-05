@@ -29,12 +29,9 @@ public class PlatformController : MonoBehaviour
 
     private void Start()
     {
-        GameState.instace.OnLifeChanged += life =>
+        GameState.instace.OnEndGame += () =>
         {
-            if (life > 0)
-            {
-                AddBall();
-            }
+            AddBall();
         };
     }
 

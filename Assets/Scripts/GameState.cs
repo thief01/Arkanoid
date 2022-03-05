@@ -11,6 +11,7 @@ public class GameState : MonoBehaviour
     public event Action OnCloneBalls = delegate { };
     public event Action<int> OnScoreChanged = delegate { };
     public event Action<int> OnLifeChanged = delegate { };
+    public event Action OnEndGame = delegate { };
 
     private int score = 0;
     private int lifes = 3;
@@ -51,7 +52,9 @@ public class GameState : MonoBehaviour
         if (countOfBalls <= 0)
         {
             lifes--;
-            OnLifeChanged(lifes);
+            OnLifeChanged?.Invoke(lifes);
+            if (lifes <= 0)
+                OnEndGame?.Invoke();
         }
     }
 }

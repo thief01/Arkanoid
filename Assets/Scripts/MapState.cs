@@ -17,7 +17,7 @@ public class MapState : MonoBehaviour
     private int ySize;
 
     [SerializeField]
-    private GameObject[] bricksPrefabs;
+    private GameObject brickPrefab;
 
     private List<GameObject> spawnedBricks = new List<GameObject>();
     private void Awake()
@@ -59,15 +59,16 @@ public class MapState : MonoBehaviour
             {
                 Vector3 offset = new Vector3(j * X_BRICK_SIZE, i * Y_BRICK_SIZE, 0);
                 Vector3 position = offset + transform.position;
-                float brickDurability = Mathf.PerlinNoise(position.y, Random.Range(0, (position.x+position.y)*5)) * (bricksPrefabs.Length + 2);
+                float brickDurability = Mathf.PerlinNoise(position.y, Random.Range(0, (position.x+position.y)*5)) * (Brick.MAX_HEALTH + 2);
                 int blockId = Mathf.RoundToInt(brickDurability);
-                if (blockId < bricksPrefabs.Length)
+                if (blockId < Brick.MAX_HEALTH)
                 {
                     while (currentBricks[blockId] > MAX_BRICKS_BY_ID[blockId])
                     {
                         blockId--;
                     }
-                    GameObject brick = Instantiate(bricksPrefabs[blockId], transform);
+                    GameObject brick = Instantiate(brickPrefab, transform);
+                    brick.GetComponent<Brick>().Health = blockId+1;
                     brick.transform.position = position;
                     spawnedBricks.Add(brick);
                     currentBricks[blockId]++;

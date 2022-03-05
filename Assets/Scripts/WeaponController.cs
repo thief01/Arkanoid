@@ -17,13 +17,10 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
-        GameState.instace.OnLifeChanged += lifes =>
+        GameState.instace.OnEndGame += () =>
         {
-            if (lifes <= 0)
-            {
-                currentShots = 0;
-                SetActiveWeapon(false);
-            }
+            currentShots = 0;
+            SetActiveWeapon(false);
         };
     }
 
