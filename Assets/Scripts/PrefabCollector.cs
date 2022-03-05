@@ -66,20 +66,24 @@ public class PrefabCollector<T> where T : MonoBehaviour
         {
             prefab = InitNewPrefab();
         }
+        prefab.gameObject.SetActive(true);
         return prefab;
     }
 
     public void Destroy(T objectRef, float time = 0)
     {
         Prefab p = prefabs.Find(ctg => ctg.prefab == objectRef);
-        if (time <= 0)
+        if (p != null)
         {
-            p.isUsing = false;
-            p.prefab.gameObject.SetActive(false);
-        }
-        else
-        {
-            p.Destroy(time);
+            if (time <= 0)
+            {
+                p.isUsing = false;
+                p.prefab.gameObject.SetActive(false);
+            }
+            else
+            {
+                p.Destroy(time);
+            }
         }
     }
 
