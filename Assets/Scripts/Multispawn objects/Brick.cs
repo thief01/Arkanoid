@@ -26,7 +26,7 @@ public class Brick : MonoBehaviour
 
     private int health;
     [SerializeField]
-    private GameObject brickExplode;
+    private FXExplode brickExplode;
     [SerializeField]
     private GameObject[] pickupDrop;
 
@@ -37,6 +37,7 @@ public class Brick : MonoBehaviour
 
     private void Awake()
     {
+        PrefabCollector<FXExplode>.Instance.SetSketch(brickExplode);
         spriteRenderer = GetComponent<SpriteRenderer>();
         OnHealthChanged();
     }
@@ -65,15 +66,15 @@ public class Brick : MonoBehaviour
         }
         SpawnFX();
         GameState.instace.AddPoints(POINTS_FOR_DESTROY);
-        MapState.instance.BrickDestroyed(gameObject);
-        Destroy(gameObject);
+        MapState.instance.BrickDestroyed(this);
+        PrefabCollector<Brick>.Instance.Destroy(this);
     }
 
     private void SpawnFX()
     {
-        GameObject g = Instantiate(brickExplode);
+        FXExplode g = PrefabCollector<FXExplode>.Instance.GetFreePrefab();
         g.transform.position = transform.position;
-        Destroy(g, 1);
+        g.Play();
     }
 
     private void OnHealthChanged()

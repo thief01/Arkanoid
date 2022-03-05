@@ -9,12 +9,17 @@ public class Bullet : MonoBehaviour
 
     private void Awake()
     {
+        
+        PrefabCollector<Bullet>.Instance.Destroy(this, 10);
+    }
+
+    private void OnEnable()
+    {
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1).normalized * speed;
-        Destroy(gameObject, 10);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        PrefabCollector<Bullet>.Instance.Destroy(this);
     }
 }

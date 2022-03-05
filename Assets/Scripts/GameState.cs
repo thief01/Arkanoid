@@ -21,6 +21,8 @@ public class GameState : MonoBehaviour
     {
         if (instace == null)
             instace = this;
+        else
+            Destroy(this);
     }
 
     private void Start()

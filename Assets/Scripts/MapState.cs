@@ -17,13 +17,16 @@ public class MapState : MonoBehaviour
     private int ySize;
 
     [SerializeField]
-    private GameObject brickPrefab;
+    private Brick brickPrefab;
 
-    private List<GameObject> spawnedBricks = new List<GameObject>();
+    private List<Brick> spawnedBricks = new List<Brick>();
     private void Awake()
     {
         if (instance == null)
             instance = this;
+        else
+            Destroy(this);
+        PrefabCollector<Brick>.Instance.SetSketch(brickPrefab);
         SpawnMap();
     }
 
@@ -40,7 +43,7 @@ public class MapState : MonoBehaviour
         }
     }
 
-    public void BrickDestroyed(GameObject g)
+    public void BrickDestroyed(Brick g)
     {
         spawnedBricks.Remove(g);
 
@@ -67,11 +70,12 @@ public class MapState : MonoBehaviour
                     {
                         blockId--;
                     }
-                    GameObject brick = Instantiate(brickPrefab, transform);
-                    brick.GetComponent<Brick>().Health = blockId+1;
+                    Brick brick = PrefabCollector<Brick>.Instance.GetFreePrefab();
+                    brick.transform.parent = transform;
+                    brick.Health = blockId+1;
                     brick.transform.position = position;
-                    spawnedBricks.Add(brick);
                     currentBricks[blockId]++;
+                    spawnedBricks.Add(brick);
                 }
             }
         }

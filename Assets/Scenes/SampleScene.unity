@@ -946,6 +946,7 @@ GameObject:
   - component: {fileID: 672590000}
   - component: {fileID: 672589999}
   - component: {fileID: 672590001}
+  - component: {fileID: 672590002}
   m_Layer: 0
   m_Name: GameState
   m_TagString: Untagged
@@ -993,7 +994,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSize: 20
   ySize: 20
-  brickPrefab: {fileID: 9059527701383030152, guid: a60f239147efc0f428784c1e4ae45173, type: 3}
+  brickPrefab: {fileID: 2229564924206673955, guid: a60f239147efc0f428784c1e4ae45173, type: 3}
+--- !u!114 &672590002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672589998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3083e26a60f0b654797dcf76a6a6691f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &759646080
 GameObject:
   m_ObjectHideFlags: 0
@@ -2197,7 +2210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  ball: {fileID: 8025077305792524683, guid: 88ef4d55e128def4f8a8461868bbd9b2, type: 3}
+  ballPrefab: {fileID: -5676163366257874286, guid: 88ef4d55e128def4f8a8461868bbd9b2, type: 3}
   spawnBallPosition: {fileID: 937587107}
   platformSizes:
   - {fileID: 451124314}
@@ -2218,7 +2231,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 2141028531}
   - {fileID: 1911431410}
-  bullet: {fileID: 5525254212972008058, guid: 4ea0da865e200ed49b64c060d7089bf7, type: 3}
+  bulletPrefab: {fileID: 5525254212972008057, guid: 4ea0da865e200ed49b64c060d7089bf7, type: 3}
   spawnOffset: 0.1
 --- !u!1 &1833664543
 GameObject:

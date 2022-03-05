@@ -9,7 +9,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField]
     private Transform[] weapons;
     [SerializeField]
-    private GameObject bullet;
+    private Bullet bulletPrefab;
     [SerializeField]
     private float spawnOffset;
 
@@ -22,6 +22,7 @@ public class WeaponController : MonoBehaviour
             currentShots = 0;
             SetActiveWeapon(false);
         };
+        PrefabCollector<Bullet>.Instance.SetSketch(bulletPrefab);
     }
 
     private void OnDrawGizmosSelected()
@@ -39,7 +40,7 @@ public class WeaponController : MonoBehaviour
             currentShots--;
             foreach (Transform t in weapons)
             {
-                GameObject g = Instantiate(bullet);
+                Bullet g = PrefabCollector<Bullet>.Instance.GetFreePrefab();
                 g.transform.position = t.position + Vector3.up * spawnOffset;
             }
         }

@@ -10,28 +10,30 @@ public class PlatformController : MonoBehaviour
     [SerializeField]
     private float speed;
     [SerializeField]
-    private GameObject ball;
+    private Ball ballPrefab;
     [SerializeField]
     private Transform spawnBallPosition;
 
     [SerializeField]
     private GameObject[] platformSizes;
 
-    private GameObject ballOnThePlatform;
+    private Ball ballOnThePlatform;
     private Rigidbody2D rigidbody2D;
     private int currentSize = 1;
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        PrefabCollector<Ball>.Instance.SetSketch(ballPrefab);
         AddBall();
     }
 
     private void Start()
     {
-        GameState.instace.OnEndGame += () =>
+        GameState.instace.OnLifeChanged += lifes =>
         {
-            AddBall();
+            if(lifes>0)
+                AddBall();
         };
     }
 
@@ -44,7 +46,7 @@ public class PlatformController : MonoBehaviour
     {
         if (ballOnThePlatform != null)
         {
-            ballOnThePlatform.GetComponent<Ball>().Throw();
+            ballOnThePlatform.Throw();
             ballOnThePlatform = null;
         }
     }
@@ -73,8 +75,9 @@ public class PlatformController : MonoBehaviour
     {
         if (ballOnThePlatform == null)
         {
-            ballOnThePlatform = Instantiate(ball, transform);
+            ballOnThePlatform = PrefabCollector<Ball>.Instance.GetFreePrefab();
             ballOnThePlatform.transform.position = spawnBallPosition.position;
+            ballOnThePlatform.transform.parent = transform;
             GameState.instace.AddBall();
         }
     }

@@ -20,10 +20,12 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.name == "deathZone")
         {
             GameState.instace.RemoveBall();
-            Destroy(gameObject);
+            rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+            PrefabCollector<Ball>.Instance.Destroy(this);
         }
 
         if (collision.gameObject.tag == "Player")
@@ -34,6 +36,11 @@ public class Ball : MonoBehaviour
                 float x = (transform.position.x - pc.transform.position.x) / (pc.GetSize() * 0.35f);
                 rigidbody2D.velocity = new Vector2(x, 1).normalized * speed;
             }
+        }
+
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Brick"))
+        {
+            
         }
 
         if (rigidbody2D.velocity.magnitude < speed)
@@ -49,14 +56,21 @@ public class Ball : MonoBehaviour
         transform.parent = null;
     }
 
+    public void ThrowInDirection(Vector3 direction)
+    {
+        rigidbody2D.velocity = direction.normalized * speed;
+        rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+    }
+
     public void Clone()
     {
-        if (rigidbody2D != null)
+        if (rigidbody2D != null && gameObject.activeSelf)
         {
             if (rigidbody2D.bodyType != RigidbodyType2D.Kinematic)
             {
-                GameObject g = Instantiate(gameObject);
-                g.GetComponent<Rigidbody2D>().velocity = -rigidbody2D.velocity;
+                Ball g = PrefabCollector<Ball>.Instance.GetFreePrefab();
+                g.transform.position = transform.position;
+                g.ThrowInDirection(-rigidbody2D.velocity);
                 GameState.instace.AddBall();
             }
         }
