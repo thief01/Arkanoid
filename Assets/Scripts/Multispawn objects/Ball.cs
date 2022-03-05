@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    private const float PLATFORM_SIZE_SCALE = 0.35f;
     [SerializeField]
     private float speed = 10;
     private Rigidbody2D rigidbody2D;
@@ -33,7 +34,7 @@ public class Ball : MonoBehaviour
             PlatformController pc = collision.gameObject.GetComponent<PlatformController>();
             if (pc != null)
             {
-                float x = (transform.position.x - pc.transform.position.x) / (pc.GetSize() * 0.35f);
+                float x = (transform.position.x - pc.transform.position.x) / (pc.GetSize() * PLATFORM_SIZE_SCALE);
                 rigidbody2D.velocity = new Vector2(x, 1).normalized * speed;
             }
         }
