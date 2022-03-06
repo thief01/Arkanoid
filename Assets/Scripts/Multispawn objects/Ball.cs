@@ -50,7 +50,7 @@ public class Ball : MonoBehaviour
             {
                 float x = (transform.position.x - pc.transform.position.x) / (pc.GetSize() * PLATFORM_SIZE_SCALE);
                 float y = transform.position.y - pc.transform.position.y;
-                rigidbody2D.velocity = new Vector2(x, y).normalized * speed;
+                rigidbody2D.velocity = new Vector2(x, y*pc.GetSize()*speed).normalized * speed;
             }
         }
 
@@ -106,7 +106,7 @@ public class Ball : MonoBehaviour
     private void CastRay()
     {
         RaycastHit2D templaterRay = Physics2D.CircleCast(transform.position, BALL_SIZE / 2, rigidbody2D.velocity, 1, layer);
-        if (templaterRay.collider != null && Vector3.Distance(transform.position, templaterRay.point) > BALL_SIZE * 1.2f)
+        if (templaterRay.collider != null && Vector3.Distance(transform.position, templaterRay.point) > BALL_SIZE/2)
         {
             lastVelocity = rigidbody2D.velocity.normalized;
             lastRay = templaterRay;
