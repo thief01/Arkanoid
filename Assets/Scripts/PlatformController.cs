@@ -38,7 +38,6 @@ public class PlatformController : MonoBehaviour
 
         GameState.instace.OnStartGame += () =>
         {
-            ballOnThePlatform = null;
             AddBall();
         };
     }
