@@ -97,7 +97,7 @@ public class Ball : MonoBehaviour
 
     private IEnumerator DelayChangeVelocity(Collision2D collision)
     {
-        yield return new WaitForSeconds(0.030f);
+        yield return new WaitForSeconds(0.075f);
         if (lastRay.collider != null && collision.gameObject.layer == LayerMask.NameToLayer("Brick"))
         {
             Vector2 v = lastRay.normal.normalized;
