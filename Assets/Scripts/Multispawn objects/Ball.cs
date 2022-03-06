@@ -63,6 +63,11 @@ public class Ball : MonoBehaviour
             StartCoroutine(DelayChangeVelocity(collision));
     }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        rigidbody2D.velocity = rigidbody2D.velocity.normalized * speed;
+    }
+
     public void Throw()
     {
         rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
