@@ -35,7 +35,7 @@ public class Ball : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {    
+    {
         if (collision.gameObject.name == "deathZone")
         {
             GameState.instace.RemoveBall();
@@ -49,15 +49,17 @@ public class Ball : MonoBehaviour
             if (pc != null)
             {
                 float x = (transform.position.x - pc.transform.position.x) / (pc.GetSize() * PLATFORM_SIZE_SCALE);
-                rigidbody2D.velocity = new Vector2(x, 1).normalized * speed;
+                float y = transform.position.y - pc.transform.position.y;
+                rigidbody2D.velocity = new Vector2(x, y).normalized * speed;
             }
         }
+
         if (rigidbody2D.velocity.magnitude < speed)
         {
             rigidbody2D.velocity = rigidbody2D.velocity.normalized * speed;
         }
 
-        if(gameObject.activeSelf)
+        if (gameObject.activeSelf)
             StartCoroutine(DelayChangeVelocity(collision));
     }
 

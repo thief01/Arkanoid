@@ -15,7 +15,6 @@ public class MapState : MonoBehaviour
     private int xSize;
     [SerializeField]
     private int ySize;
-
     [SerializeField]
     private Brick brickPrefab;
 
@@ -63,7 +62,7 @@ public class MapState : MonoBehaviour
             {
                 Vector3 offset = new Vector3(j * X_BRICK_SIZE, i * Y_BRICK_SIZE, 0);
                 Vector3 position = offset + transform.position;
-                float brickDurability = Mathf.PerlinNoise(position.y, Random.Range(0, (position.x+position.y)*5)) * (Brick.MAX_HEALTH + 2);
+                float brickDurability = Mathf.PerlinNoise(position.y, Random.Range(0, (position.x + position.y) * 5)) * (Brick.MAX_HEALTH + 2);
                 int blockId = Mathf.RoundToInt(brickDurability);
                 if (blockId < Brick.MAX_HEALTH)
                 {
@@ -73,7 +72,7 @@ public class MapState : MonoBehaviour
                     }
                     Brick brick = PrefabCollector<Brick>.Instance.GetFreePrefab();
                     brick.transform.parent = transform;
-                    brick.Health = blockId+1;
+                    brick.Health = blockId + 1;
                     brick.transform.position = position;
                     currentBricks[blockId]++;
                     spawnedBricks.Add(brick);

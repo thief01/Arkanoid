@@ -18,23 +18,22 @@ public class Brick : MonoBehaviour
             return health;
         }
 
-        set 
+        set
         {
             health = value;
             OnHealthChanged();
         }
     }
 
-    private int health;
     [SerializeField]
     private FXExplode brickExplode;
     [SerializeField]
     private Pickup pickupDrop;
-
     [SerializeField]
     private Sprite[] spritesByHealth;
 
     private SpriteRenderer spriteRenderer;
+    private int health;
 
     private void Awake()
     {
@@ -82,7 +81,7 @@ public class Brick : MonoBehaviour
     private void OnHealthChanged()
     {
         int spriteId = health - 1;
-        if(spriteId> -1 && spriteId < spritesByHealth.Length)
+        if (spriteId > -1 && spriteId < spritesByHealth.Length)
         {
             spriteRenderer.sprite = spritesByHealth[spriteId];
         }

@@ -10,7 +10,7 @@ public class FXExplode : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
-    
+
     public void Play()
     {
         if (animator == null)

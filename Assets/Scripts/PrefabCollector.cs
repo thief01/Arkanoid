@@ -28,7 +28,7 @@ public class PrefabCollector<T> where T : MonoBehaviour
 
         public void Destroy(float time)
         {
-            if(!coroutineIsActive)
+            if (!coroutineIsActive)
                 prefab.StartCoroutine(Timer(time));
         }
 
@@ -58,7 +58,7 @@ public class PrefabCollector<T> where T : MonoBehaviour
 
     public T GetFreePrefab()
     {
-        if(sketch==null)
+        if (sketch == null)
         {
             Debug.LogWarning(WARRNING_MESSAGE);
             return null;
@@ -113,7 +113,7 @@ public class PrefabCollector<T> where T : MonoBehaviour
 
     private void OnGameEnd()
     {
-        foreach(Prefab p in prefabs)
+        foreach (Prefab p in prefabs)
         {
             p.isUsing = false;
             p.prefab.gameObject.SetActive(false);

@@ -5,8 +5,8 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     private const float SPEED = -2.5f;
-    private readonly Powerup[] POWERUPS = 
-    { 
+    private readonly Powerup[] POWERUPS =
+    {
         new PowerupSizeUp(),
         new PowerupSizeDown(),
         new PowerupAddWeapon(),
@@ -33,7 +33,7 @@ public class Pickup : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        rigidbody2D= GetComponent<Rigidbody2D>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
@@ -43,7 +43,7 @@ public class Pickup : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(pickupId < POWERUPS.Length)
+        if (pickupId < POWERUPS.Length)
             POWERUPS[pickupId].Execute(collision);
 
         PrefabCollector<Pickup>.Instance.Destroy(this);
@@ -57,7 +57,7 @@ public class Pickup : MonoBehaviour
 
     private void OnTypeChanged()
     {
-        if(pickupId < spritesByType.Length)
+        if (pickupId < spritesByType.Length)
             spriteRenderer.sprite = spritesByType[pickupId];
     }
 }

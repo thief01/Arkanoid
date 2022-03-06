@@ -40,7 +40,7 @@ public class GameState : MonoBehaviour
         countOfBalls = 0;
         OnScoreChanged?.Invoke(score);
         OnLifeChanged?.Invoke(lifes);
-        OnStartGame();
+        OnStartGame?.Invoke();
     }
 
     public void CloneBalls()

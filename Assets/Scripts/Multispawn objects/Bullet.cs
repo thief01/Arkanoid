@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
 
     private void Awake()
     {
-        rigidbody2D= GetComponent<Rigidbody2D>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()

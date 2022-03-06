@@ -6,11 +6,11 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
     private const string LIFES = "Lifes: ";
+
     [SerializeField]
     private TextMeshProUGUI lifes;
     [SerializeField]
     private TextMeshProUGUI score;
-
     [SerializeField]
     private TextMeshProUGUI scoreInGameoverScreen;
     [SerializeField]

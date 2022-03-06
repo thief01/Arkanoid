@@ -25,14 +25,13 @@ public class PlatformController : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         PrefabCollector<Ball>.Instance.SetSketch(ballPrefab);
-        AddBall();
     }
 
     private void Start()
     {
         GameState.instace.OnLifeChanged += lifes =>
         {
-            if(lifes>0)
+            if (lifes > 0)
                 AddBall();
         };
 
@@ -40,6 +39,7 @@ public class PlatformController : MonoBehaviour
         {
             AddBall();
         };
+        AddBall();
     }
 
     public int GetSize()
