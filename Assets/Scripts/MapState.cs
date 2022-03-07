@@ -22,12 +22,16 @@ public class MapState : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+            PrefabCollector<Brick>.Instance.SetSketch(brickPrefab);
+            GameState.instace.OnStartGame += SpawnMap;
+            SpawnMap();
+        }
         else
+        {
             Destroy(this);
-        PrefabCollector<Brick>.Instance.SetSketch(brickPrefab);
-        GameState.instace.OnStartGame += SpawnMap;
-        SpawnMap();
+        }
     }
 
     private void OnDrawGizmosSelected()

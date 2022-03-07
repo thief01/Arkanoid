@@ -21,9 +21,13 @@ public class GameState : MonoBehaviour
     private void Awake()
     {
         if (instace == null)
+        {
             instace = this;
+        }
         else
+        {
             Destroy(this);
+        }
     }
 
     private void Start()
